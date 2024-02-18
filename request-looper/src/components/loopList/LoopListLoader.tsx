@@ -2,7 +2,7 @@ import { FC, useContext, useState } from "react";
 import { LoopData } from "../../types/types";
 import { LoopDataContext } from "../../contexts/LoopDataContext";
 
-function LoopListInput<LoopListInputProps>() {
+function LoopListLoader() {
   const [file, setFile] = useState<Blob | null>(null);
   const fileReader = new FileReader();
 
@@ -56,4 +56,4 @@ function LoopListInput<LoopListInputProps>() {
   );
 }
 
-export default LoopListInput;
+export default LoopListLoader;

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/postman-collection": "^3.5.10"
+  }
+}
