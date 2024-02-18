@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
 import FileInput from "./components/LoopListInput";
+import { LoopData } from "./types/types";
 
 const App:FC = () => {
-  const [loopList, setLoopList] =useState<string[]|null>(null);
+  const [loopList, setLoopList] =useState<LoopData|null>(null);
   const [newLine, setNewLine] =useState<string>('\r\n');
   console.log(loopList);
   return <>
