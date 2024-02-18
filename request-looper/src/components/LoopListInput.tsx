@@ -1,25 +1,22 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { LoopData } from "../types/types";
+import { LoopDataContext } from "../contexts/LoopDataContext";
 
-interface LoopListInputProps {
-  loopList: LoopData | null;
-  setLoopList: React.Dispatch<React.SetStateAction<LoopData | null>>;
-  newLine: string;
-}
-
-const LoopListInput: FC<LoopListInputProps> = ({
-  newLine,
-  loopList,
-  setLoopList,
-}) => {
+function LoopListInput<LoopListInputProps>() {
   const [file, setFile] = useState<Blob | null>(null);
   const fileReader = new FileReader();
-  const separator = ";";
+
+  const {
+    setLoopList,
+    newLine,
+    separator,
+  } = useContext(LoopDataContext);
+
   const generateLoopData = (csvString: string): LoopData => {
     const loopArray = csvString
       .split(newLine)
       .map((lineString) => lineString.split(separator));
-    const variables = loopArray.shift()||[];
+    const variables = loopArray.shift() || [];
     const loopData: LoopData = { variables, loopArray };
     return loopData;
   };
@@ -36,7 +33,7 @@ const LoopListInput: FC<LoopListInputProps> = ({
         const csvOutput: string | null =
           event.target && event.target.result!.toString();
         console.log(csvOutput);
-        setLoopList(generateLoopData(csvOutput!));
+        setLoopList&&setLoopList(generateLoopData(csvOutput!));
       };
 
       fileReader.readAsText(file);
@@ -57,6 +54,6 @@ const LoopListInput: FC<LoopListInputProps> = ({
       </form>
     </>
   );
-};
+}
 
 export default LoopListInput;
