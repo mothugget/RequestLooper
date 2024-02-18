@@ -1,13 +1,11 @@
-import React, { ReactElement } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC, useState } from "react";
+import FileInput from "./components/LoopFileInput";
 
-function App(): ReactElement|null {
-  return (
-    <div className="App">
-
-    </div>
-  );
-}
+const App:FC = () => {
+  const [file, setFile] =useState<[]|null>(null);
+  return <>
+  <FileInput file={file} setFile={setFile} />
+  </>;
+};
 
 export default App;
