@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from "react";
-import { LoopData } from "../types/types";
-import { LoopDataContext } from "../contexts/LoopDataContext";
+import { LoopData } from "../../types/types";
+import { LoopDataContext } from "../../contexts/LoopDataContext";
 
 function LoopListInput<LoopListInputProps>() {
   const [file, setFile] = useState<Blob | null>(null);

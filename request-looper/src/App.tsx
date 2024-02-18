@@ -1,5 +1,5 @@
 import { FC, useContext, useState } from "react";
-import FileInput from "./components/LoopListInput";
+import FileInput from "./components/loopList/LoopListInput";
 import { LoopData } from "./types/types";
 import { LoopDataContext } from "./contexts/LoopDataContext";
 
