@@ -5,7 +5,7 @@ interface FileLoaderProps {
   acceptType: string;
 }
 
-function FileLoader({ stateSetter, acceptType }:FileLoaderProps) {
+function FileLoader({ stateSetter, acceptType }: FileLoaderProps) {
   const [file, setFile] = useState<Blob | null>(null);
   const fileReader = new FileReader();
 
@@ -18,8 +18,7 @@ function FileLoader({ stateSetter, acceptType }:FileLoaderProps) {
 
     if (file) {
       fileReader.onload = function (event) {
-        const output: string | null =
-          event.target && event.target.result!.toString();
+        const output: string | null = event.target!.result!.toString() || null;
         console.log(output);
         stateSetter(output);
       };
