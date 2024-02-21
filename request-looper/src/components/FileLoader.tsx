@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface FileLoaderProps {
-  stateSetter: any;
+  stateSetter: Dispatch<SetStateAction<any>>;
   acceptType: string;
 }
 
