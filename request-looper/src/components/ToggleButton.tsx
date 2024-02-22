@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
+import { FetchRequest } from "../types/types";
 
 interface ToggleButtonType {
   label: string;
-  state: boolean;
-  setter: Dispatch<SetStateAction<boolean>>;
+  state: FetchRequest;
+  setter: Dispatch<SetStateAction<FetchRequest>>;
 }
 
 function ToggleButton({ label, state, setter }: ToggleButtonType) {
@@ -13,7 +14,7 @@ function ToggleButton({ label, state, setter }: ToggleButtonType) {
       <button
       className = {'togglebutton'+state}
         onClick={() => {
-          setter(!state);
+          setter(state=>!state.showOptions.body);
         }}
       >
         {label}

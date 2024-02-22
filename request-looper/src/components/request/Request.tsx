@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import TextInput from "../TextInput";
 import ToggleButton from "../ToggleButton";
+import { RequestContext } from "../../contexts/RequestContext";
 
 interface RequestInput {
   label:string;
@@ -10,28 +11,12 @@ interface RequestInput {
 
 
 function Request() {
-  const [showResource, setShowResource] = useState(false);
-  const [showMethod, setShowMethod] = useState(false);
-  const [showHeaders, setShowHeaders] = useState(false);
-  const [showBody, setShowBody] = useState(false);
-  const [showMode, setShowMode] = useState(false);
-  const [showCredentials, setShowCredentials] = useState(false);
-  const [showCache, setShowCache] = useState(false);
-  const [showRedirect, setShowRedirect] = useState(false);
-  const [showReferrer, setShowReferrer] = useState(false);
-  const [showReferrerPolicy, setShowReferrerPolicy] = useState(false);
-  const [showIntegrity, setShowIntegrity] = useState(false);
-  const [showKeepalive, setShowKeepalive] = useState(false);
-  const [showSignal, setShowSignal] = useState(false);
-  const [showPriority, setShowPriority] = useState(false);
 
-  
-
-
+const{fetchRequest, setFetchRequest} =useContext(RequestContext);
 
   return (
     <div>
-      <ToggleButton label={"toggle"} state={showBody} setter={setShowBody} />
+      <ToggleButton label={"body"} state={fetchRequest} setter={setFetchRequest} />
       <TextInput
         error={false}
         type={'text'}

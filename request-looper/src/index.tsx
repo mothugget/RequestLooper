@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LoopDataProvider } from "./contexts/LoopDataContext";
+import { RequestContextProvider } from "./contexts/RequestContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <RequestContextProvider>
     <LoopDataProvider>
       <App />
     </LoopDataProvider>
+    </RequestContextProvider>
   </React.StrictMode>
 );
 
