@@ -11,6 +11,7 @@ function ToggleButton({ label, state, setter }: ToggleButtonType) {
   return (
     <div>
       <button
+      className = {'togglebutton'+state}
         onClick={() => {
           setter(!state);
         }}
