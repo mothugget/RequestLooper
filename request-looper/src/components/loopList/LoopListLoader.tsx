@@ -7,7 +7,7 @@ import FileLoader from "../FileLoader";
 function LoopListLoader() {
   const [csvString, setCsvString] = useState<Blob | null>(null);
 useEffect(()=>{
-  (setLoopList&&csvString)&&setLoopList(generateLoopData(csvString.toString(), newLine, separator));
+  csvString&&setLoopList(generateLoopData(csvString.toString(), newLine, separator));
   //  not sure why I have to cast this to string, as I already did this in the file loader Component. Someone Help Please!
 },[csvString]);
 

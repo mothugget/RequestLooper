@@ -3,20 +3,25 @@ import { LoopData } from "../types/types";
 
 interface LoopDataContextType {
   loopList: LoopData | null;
-  setLoopList: Dispatch<SetStateAction<LoopData | null>> | null;
+  setLoopList: Dispatch<SetStateAction<LoopData | null>> ;
   newLine: string;
-  setNewLine: Dispatch<SetStateAction<string>> | null;
+  setNewLine: Dispatch<SetStateAction<string>> ;
   separator: string;
-  setSeparator: Dispatch<SetStateAction<string>> | null;
+  setSeparator: Dispatch<SetStateAction<string>> ;
 }
+
+
+const   dummySetLoopList= "dummy" as unknown as Dispatch<SetStateAction<LoopData | null>> ;
+const   dummySetNewLine= "dummy" as unknown as  Dispatch<SetStateAction<string>> ;
+const   dummySetSeparator= "dummy" as unknown as  Dispatch<SetStateAction<string>>;
 
 const LoopDataContext = createContext<LoopDataContextType>({
   loopList: null,
-  setLoopList: null,
+  setLoopList: dummySetLoopList,
   newLine: "\r\n",
-  setNewLine: null,
+  setNewLine: dummySetNewLine,
   separator: ";",
-  setSeparator: null,
+  setSeparator: dummySetSeparator,
 });
 
 function LoopDataProvider({ children }: any) {
