@@ -25,4 +25,4 @@ interface FetchRequest {
     showOptions: ShowOptions;
 }
 
-export type { LoopData, FetchRequest };
+export type { LoopData, FetchRequest,ShowOptions };

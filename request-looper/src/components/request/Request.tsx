@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import TextInput from "../TextInput";
-import ToggleButton from "../ToggleButton";
+import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
+
 
 interface RequestInput {
   label:string;
@@ -13,10 +14,10 @@ interface RequestInput {
 function Request() {
 
 const{fetchRequest, setFetchRequest} =useContext(RequestContext);
-
+console.log(fetchRequest.showOptions.body);
   return (
     <div>
-      <ToggleButton label={"body"} state={fetchRequest} setter={setFetchRequest} />
+      <ToggleShowOptionButton label={"body"} state={fetchRequest} setter={setFetchRequest} />
       <TextInput
         error={false}
         type={'text'}
