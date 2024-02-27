@@ -1,9 +1,12 @@
 .request-input-textarea-wrapper {
     height: 300px;
     width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .fit-container{
-    height: 90%;
-    width: 90%;
+    height: 96%;
+    width: 93%;
 }
