@@ -23,11 +23,10 @@ function TextInput({
 }: TextInputProps) {
   return (
     <div className="input-wrapper">
-      <label htmlFor={label}>{label}</label>
       <input
         type={type}
         id={label}
-        
+        value={value}
         name={name}
         placeholder={placeholder}
         onChange={onChange}
