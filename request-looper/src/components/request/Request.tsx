@@ -4,47 +4,52 @@ import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
 import TextArea from "../TextArea";
 
-
 interface RequestInput {
-  label:string;
-  showState:boolean;
-  showStateSetter:Dispatch<SetStateAction<boolean>>
+  label: string;
+  showState: boolean;
+  showStateSetter: Dispatch<SetStateAction<boolean>>;
 }
-
 
 function Request() {
-const{fetchRequest, setFetchRequest} =useContext(RequestContext);
+  const { fetchRequest, setFetchRequest } = useContext(RequestContext);
 
-function reqStringValueUpdater(event:ChangeEvent<HTMLTextAreaElement>){
-const updatedReqObject ={...fetchRequest};
-const fetchParameters=event.target.value.slice(8,event.target.value.length-2)
-updatedReqObject.fetchString=fetchParameters;
-setFetchRequest(updatedReqObject);
-}
+  function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
+    const updatedReqObject = { ...fetchRequest };
+    const fetchParameters = event.target.value.slice(
+      8,
+      event.target.value.length - 2
+    );
+    updatedReqObject.fetchString = fetchParameters;
+    setFetchRequest(updatedReqObject);
+  }
 
-console.log(fetchRequest.showOptions.body);
+  console.log(fetchRequest.showOptions.body);
   return (
     <div>
-      <ToggleShowOptionButton label={"body"} state={fetchRequest} setter={setFetchRequest} />
+      <ToggleShowOptionButton
+        label={"body"}
+        state={fetchRequest}
+        setter={setFetchRequest}
+      />
       <TextInput
         error={false}
-        type={'text'}
-        label={'label'}
-        value={fetchRequest.fetchString}
-        name={'name'}
-        placeholder={'placeholder'}
+        type={"text"}
+        label={"label"}
+        value={""}
+        name={"name"}
+        placeholder={"placeholder"}
         onChange={(e) => console.log(e)}
         disabled={false}
       />
       <TextArea
-              error={false}
-              type={'text'}
-              label={'request-input'}
-              value={'fetch( \n'+fetchRequest.fetchString+'\n)'}
-              name={'name'}
-              placeholder={'placeholder'}
-              onChange={reqStringValueUpdater}
-              disabled={false}
+        error={false}
+        type={"text"}
+        label={"request-input"}
+        value={"fetch( \n" + fetchRequest.fetchString + "\n)"}
+        name={"name"}
+        placeholder={"placeholder"}
+        onChange={reqStringValueUpdater}
+        disabled={false}
       />
     </div>
   );

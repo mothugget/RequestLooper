@@ -22,6 +22,7 @@ interface ShowOptions {
 
 interface FetchRequest {
     fetchString: string;
+variableIndicator:string;
     showOptions: ShowOptions;
 }
 

@@ -7,7 +7,8 @@ interface RequestContextType {
 
 }
 
-const emptyFetchRequest={
+const emptyFetchRequest:FetchRequest={
+  variableIndicator:'||',
   fetchString: '',
   showOptions: {
     resource: false,
