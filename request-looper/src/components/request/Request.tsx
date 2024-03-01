@@ -3,6 +3,7 @@ import TextInput from "../TextInput";
 import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
 import TextArea from "../TextArea";
+import { sendFetchRequest } from "../../utils/fetchRequests";
 
 interface RequestInput {
   label: string;
@@ -12,6 +13,8 @@ interface RequestInput {
 
 function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
+
+  sendFetchRequest(fetchRequest.fetchString)
 
   function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
     const updatedReqObject = { ...fetchRequest };
@@ -49,6 +52,16 @@ function Request() {
         name={"name"}
         placeholder={"placeholder"}
         onChange={reqStringValueUpdater}
+        disabled={false}
+      />
+            <TextArea
+        error={false}
+        type={"text"}
+        label={"response-log"}
+        value={""}
+        name={"name"}
+        placeholder={""}
+        onChange={(e)=>{}}
         disabled={false}
       />
     </div>

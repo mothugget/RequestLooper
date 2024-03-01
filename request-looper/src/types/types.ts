@@ -20,6 +20,13 @@ interface ShowOptions {
   priority: boolean;
 }
 
+
+
+interface fetchParameters {
+  resource:RequestInfo;
+  options?: RequestInit|undefined;
+}
+
 interface FetchRequest {
     fetchString: string;
 variableIndicator:string;
