@@ -22,7 +22,7 @@ interface ShowOptions {
 
 
 
-interface fetchParameters {
+interface FetchParameters {
   resource:RequestInfo;
   options?: RequestInit|undefined;
 }
@@ -33,4 +33,4 @@ variableIndicator:string;
     showOptions: ShowOptions;
 }
 
-export type { LoopData, FetchRequest,ShowOptions };
+export type { LoopData, FetchRequest, ShowOptions, FetchParameters };
