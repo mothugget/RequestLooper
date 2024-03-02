@@ -11,7 +11,7 @@ function ToggleShowOptionButton({ label, state, setter }: ToggleButtonType) {
  
   const requestWithChangedState={...state}
   
-  console.log(label," ",requestWithChangedState.showOptions[label as keyof ShowOptions]);
+  
   return (
     <div>
       <button

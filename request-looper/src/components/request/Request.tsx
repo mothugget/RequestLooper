@@ -3,7 +3,7 @@ import TextInput from "../TextInput";
 import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
 import TextArea from "../TextArea";
-import { sendFetchRequest } from "../../utils/fetchRequests";
+import { parseRequestString, sendFetchRequest } from "../../utils/fetchRequests";
 
 interface RequestInput {
   label: string;
@@ -14,8 +14,8 @@ interface RequestInput {
 function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
 
-  sendFetchRequest(fetchRequest.fetchString)
-
+  console.log(parseRequestString(fetchRequest.fetchString));
+  
   function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
     const updatedReqObject = { ...fetchRequest };
     const fetchParameters = event.target.value.slice(
@@ -26,10 +26,10 @@ function Request() {
     setFetchRequest(updatedReqObject);
   }
 
-  console.log(fetchRequest.showOptions.body);
+
   return (
     <div>
-      <ToggleShowOptionButton
+      {/* <ToggleShowOptionButton
         label={"body"}
         state={fetchRequest}
         setter={setFetchRequest}
@@ -43,7 +43,7 @@ function Request() {
         placeholder={"placeholder"}
         onChange={(e) => console.log(e)}
         disabled={false}
-      />
+      /> */}
       <TextArea
         error={false}
         type={"text"}

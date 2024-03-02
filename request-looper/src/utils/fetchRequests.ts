@@ -1,15 +1,15 @@
 import { FetchParameters } from "../types/types";
 
 function parseRequestString(fetchString: string): FetchParameters | string {
-  
-  if (fetchString[0] === '"' || fetchString[0] === "'") {
-    const resourceArr= fetchString.split(fetchString[0], 1);
-    return fetchString[0]
-  } else if (fetchString[0] === "{") {
-    return fetchString[0]
-  } else {
-    return "Incorrect resource format: needs to be string or request object";
-  }
+  const requestArr = fetchString.split("");
+  const firstComma = requestArr.indexOf(",");
+  if (firstComma === -1)
+    return "Sorry, your request seems to be in a format not currently supported";
+  const resource = requestArr.splice(0, firstComma).join("");
+  requestArr.shift();
+  const options = requestArr.join("");
+  console.log(options);
+  return "hj";
 }
 
 function sendFetchRequest(fetchString: string) {
@@ -25,4 +25,4 @@ function sendFetchRequest(fetchString: string) {
   return responseString;
 }
 
-export { sendFetchRequest };
+export { sendFetchRequest, parseRequestString };

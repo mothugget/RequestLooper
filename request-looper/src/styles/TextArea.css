@@ -1,5 +1,5 @@
 .request-input-textarea-wrapper, .response-log-textarea-wrapper {
-    height: 600px;
+    height: fit-content;
     width: 100;
     display: flex;
     justify-content: center;
@@ -14,6 +14,6 @@
 }
 
 .fit-container{
-    height: 96%;
-    width: 93%;
+    margin: 3%;
+    width: 100%;
 }
