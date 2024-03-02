@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
-import '../styles/TextArea.css'
-
+import "../styles/TextArea.css";
 
 interface TextAreaProps {
-  type: "text" | "number" | "email" | "password";
+  maxHeight: number | false;
+  fontSize: number;
   label: string;
   value: string | number;
   name: string;
@@ -14,7 +14,7 @@ interface TextAreaProps {
 }
 
 function TextArea({
-  type,
+  maxHeight,
   label,
   value,
   name,
@@ -22,11 +22,17 @@ function TextArea({
   error,
   disabled,
   onChange,
+  fontSize,
 }: TextAreaProps) {
+  const height = (value.toString().split(/\r\n|\r|\n/).length+2) * (fontSize+2.4) ;
   return (
-    <div className={"window "+label+"-textarea-wrapper"}>
+    <div className={"window " + label + "-textarea-wrapper"}>
       <textarea
-      className='fit-container'
+        className={label}
+        style={{
+          fontSize: fontSize.toString() + "px",
+          height: maxHeight?Math.min(maxHeight,height).toString() + "px":height.toString() + "px",
+        }}
         onChange={onChange}
         id={label}
         value={value}

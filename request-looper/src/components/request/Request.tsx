@@ -3,7 +3,10 @@ import TextInput from "../TextInput";
 import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
 import TextArea from "../TextArea";
-import { parseRequestString, sendFetchRequest } from "../../utils/fetchRequests";
+import {
+  parseRequestString,
+  sendFetchRequest,
+} from "../../utils/fetchRequests";
 
 interface RequestInput {
   label: string;
@@ -15,7 +18,7 @@ function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
 
   console.log(parseRequestString(fetchRequest.fetchString));
-  
+
   function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
     const updatedReqObject = { ...fetchRequest };
     const fetchParameters = event.target.value.slice(
@@ -25,7 +28,6 @@ function Request() {
     updatedReqObject.fetchString = fetchParameters;
     setFetchRequest(updatedReqObject);
   }
-
 
   return (
     <div>
@@ -45,9 +47,10 @@ function Request() {
         disabled={false}
       /> */}
       <TextArea
+        maxHeight={false}
+        fontSize={16}
         error={false}
-        type={"text"}
-        label={"request-input"}
+        label={"resource-input"}
         value={"fetch( \n" + fetchRequest.fetchString + "\n)"}
         name={"name"}
         placeholder={"placeholder"}
@@ -55,13 +58,25 @@ function Request() {
         disabled={false}
       />
             <TextArea
+        maxHeight={false}
+        fontSize={16}
         error={false}
-        type={"text"}
+        label={"options-input"}
+        value={"fetch( \n" + fetchRequest.fetchString + "\n)"}
+        name={"name"}
+        placeholder={"placeholder"}
+        onChange={reqStringValueUpdater}
+        disabled={false}
+      />
+      <TextArea
+        maxHeight={300}
+        fontSize={10}
+        error={false}
         label={"response-log"}
         value={""}
         name={"name"}
         placeholder={""}
-        onChange={(e)=>{}}
+        onChange={(e) => {}}
         disabled={false}
       />
     </div>
