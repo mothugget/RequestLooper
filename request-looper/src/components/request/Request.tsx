@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useContext, ChangeEvent } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  ChangeEvent,
+  useState,
+  useEffect,
+} from "react";
 import TextInput from "../TextInput";
 import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
@@ -13,7 +20,11 @@ interface RequestInput {
 
 function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
-sendFetchRequest(fetchRequest)
+  const [fetchResponse, setFetchResponse] = useState<string>("");
+
+  useEffect(() => {
+    sendFetchRequest(fetchRequest).then((res) => setFetchResponse(res));
+  }, [fetchRequest]);
   function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
     const updatedReqObject = { ...fetchRequest };
   }
@@ -59,10 +70,10 @@ sendFetchRequest(fetchRequest)
       />
       <TextArea
         maxHeight={300}
-        fontSize={10}
+        fontSize={14}
         error={false}
         label={"response-log"}
-        value={""}
+        value={fetchResponse}
         name={"name"}
         placeholder={""}
         onChange={(e) => {}}
