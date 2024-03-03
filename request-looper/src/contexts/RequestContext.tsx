@@ -8,7 +8,22 @@ interface RequestContextType {
 
 const emptyFetchRequest: FetchRequest = {
   variableIndicator: "||",
-  fetchString:'"http://localhost:3001/",{\nmethod: "POST",\nheaders: {\n    "Content-Type": "application/json",\n    "x-rdp-version": "8.1",\n    "x-rdp-clientId": "rdpclient",\n    "x-rdp-userId": "system",\n    "auth-client-id": AUTHID,\n    "auth-client-secret": CLISEC,\n},\nbody: JSON.stringify({\n    "params": {\n        "query": {\n            "filters": {\n                "typesCriterion": [\n                    "tradegrade"\n                ]\n            },\n            "id": "a4a02416-dbcf-4141-b353-3b7d8e172577"\n        },\n        "fields": {\n            "attributes": [\n                "_ALL"\n            ]\n        },\n        "options": {\n            "maxRecords": 100\n        }\n    }\n}\n)\n}',
+  fetchParameters:{
+    resource:'http://localhost:3001/',
+    options:{
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          "x-rdp-version": "8.1",
+          "x-rdp-clientId": "rdpclient",
+          "x-rdp-userId": "system",
+          "auth-client-id": "AUTHID",
+          "auth-client-secret": "CLISEC",
+      },
+      body: '{"hello":"world"}'
+      
+  }
+  },
   showOptions: {
     resource: false,
     method: false,

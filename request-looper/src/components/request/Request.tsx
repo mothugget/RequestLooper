@@ -3,10 +3,7 @@ import TextInput from "../TextInput";
 import ToggleShowOptionButton from "./ToggleShowOptionButton";
 import { RequestContext } from "../../contexts/RequestContext";
 import TextArea from "../TextArea";
-import {
-  parseRequestString,
-  sendFetchRequest,
-} from "../../utils/fetchRequests";
+import { sendFetchRequest } from "../../utils/fetchRequests";
 
 interface RequestInput {
   label: string;
@@ -16,17 +13,9 @@ interface RequestInput {
 
 function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
-
-  console.log(parseRequestString(fetchRequest.fetchString));
-
+sendFetchRequest(fetchRequest)
   function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
     const updatedReqObject = { ...fetchRequest };
-    const fetchParameters = event.target.value.slice(
-      8,
-      event.target.value.length - 2
-    );
-    updatedReqObject.fetchString = fetchParameters;
-    setFetchRequest(updatedReqObject);
   }
 
   return (
@@ -51,18 +40,18 @@ function Request() {
         fontSize={16}
         error={false}
         label={"resource-input"}
-        value={"fetch( \n" + fetchRequest.fetchString + "\n)"}
+        value={fetchRequest.fetchParameters.resource.toString()}
         name={"name"}
         placeholder={"placeholder"}
         onChange={reqStringValueUpdater}
         disabled={false}
       />
-            <TextArea
+      <TextArea
         maxHeight={false}
         fontSize={16}
         error={false}
         label={"options-input"}
-        value={"fetch( \n" + fetchRequest.fetchString + "\n)"}
+        value={JSON.stringify(fetchRequest.fetchParameters.options!, null, 4)}
         name={"name"}
         placeholder={"placeholder"}
         onChange={reqStringValueUpdater}

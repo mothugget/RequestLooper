@@ -20,17 +20,15 @@ interface ShowOptions {
   priority: boolean;
 }
 
-
-
 interface FetchParameters {
-  resource:RequestInfo;
-  options?: RequestInit|undefined;
+  resource: RequestInfo;
+  options?: RequestInit | undefined;
 }
 
 interface FetchRequest {
-    fetchString: string;
-variableIndicator:string;
-    showOptions: ShowOptions;
+  fetchParameters: FetchParameters;
+  variableIndicator: string;
+  showOptions: ShowOptions;
 }
 
 export type { LoopData, FetchRequest, ShowOptions, FetchParameters };

@@ -1,22 +1,11 @@
-import { FetchParameters } from "../types/types";
+import { FetchParameters, FetchRequest } from "../types/types";
 
-function parseRequestString(fetchString: string): FetchParameters | string {
-  const requestArr = fetchString.split("");
-  const firstComma = requestArr.indexOf(",");
-  if (firstComma === -1)
-    return "Sorry, your request seems to be in a format not currently supported";
-  const resource = requestArr.splice(0, firstComma).join("");
-  requestArr.shift();
-  const options = requestArr.join("");
-  console.log(options);
-  return "hj";
-}
-
-function sendFetchRequest(fetchString: string) {
+function sendFetchRequest(fetchRequest: FetchRequest) {
   let responseString = "";
-  fetch(fetchString)
+  console.log(fetchRequest.fetchParameters.options);
+  fetch(fetchRequest.fetchParameters.resource, fetchRequest.fetchParameters.options)
     .then((res) => {
-      return res.json();
+      return res.json() ;
     })
     .then((data) => {
       console.log(data);
@@ -25,4 +14,4 @@ function sendFetchRequest(fetchString: string) {
   return responseString;
 }
 
-export { sendFetchRequest, parseRequestString };
+export { sendFetchRequest };
