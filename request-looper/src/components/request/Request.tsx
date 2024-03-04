@@ -22,11 +22,13 @@ function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
   const [fetchResponse, setFetchResponse] = useState<string>("");
 
-  useEffect(() => {
-    sendFetchRequest(fetchRequest).then((res) => setFetchResponse(res));
-  }, [fetchRequest]);
-  function reqStringValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
+  // useEffect(() => {
+  //   sendFetchRequest(fetchRequest).then((res) => setFetchResponse(res));
+  // }, [fetchRequest]);
+
+  function resourceValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
     const updatedReqObject = { ...fetchRequest };
+
   }
 
   return (
@@ -54,7 +56,7 @@ function Request() {
         value={fetchRequest.fetchParameters.resource.toString()}
         name={"name"}
         placeholder={"placeholder"}
-        onChange={reqStringValueUpdater}
+        onChange={resourceValueUpdater}
         disabled={false}
       />
       <TextArea
@@ -65,7 +67,7 @@ function Request() {
         value={JSON.stringify(fetchRequest.fetchParameters.options!, null, 4)}
         name={"name"}
         placeholder={"placeholder"}
-        onChange={reqStringValueUpdater}
+        onChange={()=>{}}
         disabled={false}
       />
       <TextArea
