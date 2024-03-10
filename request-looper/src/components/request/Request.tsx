@@ -22,23 +22,25 @@ interface RequestInput {
 function Request() {
   const { fetchRequest, setFetchRequest } = useContext(RequestContext);
   const [fetchResponse, setFetchResponse] = useState<string>("");
+  const [optionsNoBody, setOptionsNoBody] = useState<string>(JSON.stringify(fetchRequest.fetchParameters.options&&removeBody(fetchRequest.fetchParameters.options),null,4)); 
+  const [body, setBody] = useState<string>(JSON.stringify(JSON.parse(fetchRequest.fetchParameters.options!.body!.toString()),null,4)||"");
+  const [resource, setResource] = useState<string>(fetchRequest.fetchParameters.resource.toString());
+  
+  useEffect(() => {
+    sendFetchRequest(fetchRequest).then((res) => setFetchResponse(res));
+  }, [fetchRequest]);
 
-  // useEffect(() => {
-  //   sendFetchRequest(fetchRequest).then((res) => setFetchResponse(res));
-  // }, [fetchRequest]);
-
-  function resourceValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
-    const updatedReqObject = { ...fetchRequest };
-    updatedReqObject.fetchParameters.resource = event.target.value;
-    setFetchRequest(updatedReqObject);
+  function removeBody(options:RequestInit):RequestInit{
+    const returnOptions= {...options};
+    delete returnOptions.body;
+    return  returnOptions
   }
 
-  function optionValueUpdater(event: ChangeEvent<HTMLTextAreaElement>) {
-    const updatedReqObject = { ...fetchRequest };
-    const optionsObject = JSON.parse(event.target.value.replace(/\s/g, ""));
-    updatedReqObject.fetchParameters.options = optionsObject;
-    setFetchRequest(updatedReqObject);
+  function valueUpdater(event: ChangeEvent<HTMLTextAreaElement>, stateSetter:Dispatch<SetStateAction<string>>) {
+   stateSetter(event.target.value)
   }
+
+  
 
   return (
     <div>
@@ -65,7 +67,7 @@ function Request() {
         value={fetchRequest.fetchParameters.resource.toString()}
         name={"resource"}
         placeholder={"placeholder"}
-        onChange={resourceValueUpdater}
+        onChange={(e)=>valueUpdater(e,setResource)}
         disabled={false}
       />
       <TextArea
@@ -73,10 +75,21 @@ function Request() {
         fontSize={16}
         error={false}
         label={"options"}
-        value={JSON.stringify(fetchRequest.fetchParameters.options!, null, 4)}
+        value={optionsNoBody}
         name={"options"}
         placeholder={"placeholder"}
-        onChange={optionValueUpdater}
+        onChange={(e)=>valueUpdater(e,setOptionsNoBody)}
+        disabled={false}
+      />
+            <TextArea
+        maxHeight={false}
+        fontSize={16}
+        error={false}
+        label={"body"}
+        value={body}
+        name={"body"}
+        placeholder={"placeholder"}
+        onChange={(e)=>valueUpdater(e,setBody)}
         disabled={false}
       />
       <TextArea
